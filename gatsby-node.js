@@ -12,35 +12,37 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const postTemplate = path.resolve('./src/templates/post-template.jsx');
     const pageTemplate = path.resolve('./src/templates/page-template.jsx');
     const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
-    const categoryTemplate = path.resolve('./src/templates/category-template.jsx');
+    const categoryTemplate = path.resolve(
+      './src/templates/category-template.jsx'
+    );
 
     graphql(`
-    {
-      allMarkdownRemark(
-        limit: 1000,
-        filter: { frontmatter: { draft: { ne: true } } },
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            frontmatter {
-              tags
-              layout
-              category
+      {
+        allMarkdownRemark(
+          limit: 1000
+          filter: { frontmatter: { draft: { ne: true } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                tags
+                layout
+                category
+              }
             }
           }
         }
       }
-    }
-  `).then((result) => {
+    `).then(result => {
       if (result.errors) {
         console.log(result.errors);
         reject(result.errors);
       }
 
-      _.each(result.data.allMarkdownRemark.edges, (edge) => {
+      _.each(result.data.allMarkdownRemark.edges, edge => {
         if (_.get(edge, 'node.frontmatter.layout') === 'page') {
           createPage({
             path: edge.node.fields.slug,
@@ -60,7 +62,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
 
           tags = _.uniq(tags);
-          _.each(tags, (tag) => {
+          _.each(tags, tag => {
             const tagPath = `/tags/${_.kebabCase(tag)}/`;
             createPage({
               path: tagPath,
@@ -75,7 +77,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
 
           categories = _.uniq(categories);
-          _.each(categories, (category) => {
+          _.each(categories, category => {
             const categoryPath = `/categories/${_.kebabCase(category)}/`;
             createPage({
               path: categoryPath,
@@ -114,12 +116,16 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     });
 
     if (node.frontmatter.tags) {
-      const tagSlugs = node.frontmatter.tags.map(tag => `/tags/${_.kebabCase(tag)}/`);
+      const tagSlugs = node.frontmatter.tags.map(
+        tag => `/tags/${_.kebabCase(tag)}/`
+      );
       createNodeField({ node, name: 'tagSlugs', value: tagSlugs });
     }
 
     if (typeof node.frontmatter.category !== 'undefined') {
-      const categorySlug = `/categories/${_.kebabCase(node.frontmatter.category)}/`;
+      const categorySlug = `/categories/${_.kebabCase(
+        node.frontmatter.category
+      )}/`;
       createNodeField({ node, name: 'categorySlug', value: categorySlug });
     }
   }
