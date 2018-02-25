@@ -21,10 +21,10 @@ module.exports = {
     ],
     author: {
       name: 'Leonbec',
-      email: '#',
+      email: 'dwfinz@gmail.com',
       telegram: '#',
-      twitter: '#',
-      github: '#',
+      twitter: 'dwfinz',
+      github: 'leonbec',
       rss: '#',
       vk: '#'
     }
