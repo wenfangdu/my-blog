@@ -9,7 +9,12 @@ import './style.scss';
 class Sidebar extends React.Component {
   render() {
     const { location } = this.props;
-    const { author, subtitle, copyright, menu } = this.props.data.site.siteMetadata;
+    const {
+      author,
+      subtitle,
+      copyright,
+      menu
+    } = this.props.data.site.siteMetadata;
     const isHomePage = get(location, 'pathname', '/') === '/';
 
     /* eslint-disable jsx-a11y/img-redundant-alt */
@@ -24,15 +29,19 @@ class Sidebar extends React.Component {
             alt={author.name}
           />
         </Link>
-        { isHomePage ? (
+        {isHomePage ? (
           <h1 className="sidebar__author-title">
-            <Link className="sidebar__author-title-link" to="/">{author.name}</Link>
+            <Link className="sidebar__author-title-link" to="/">
+              {author.name}
+            </Link>
           </h1>
-        ) :
+        ) : (
           <h2 className="sidebar__author-title">
-            <Link className="sidebar__author-title-link" to="/">{author.name}</Link>
+            <Link className="sidebar__author-title-link" to="/">
+              {author.name}
+            </Link>
           </h2>
-        }
+        )}
         <p className="sidebar__author-subtitle">{subtitle}</p>
       </div>
     );
@@ -41,15 +50,11 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <div className="sidebar__inner">
-          <div className="sidebar__author">
-            {authorBlock}
-          </div>
+          <div className="sidebar__author">{authorBlock}</div>
           <div>
             <Menu data={menu} />
             <Links data={author} />
-            <p className="sidebar__copyright">
-              {copyright}
-            </p>
+            <p className="sidebar__copyright">{copyright}</p>
           </div>
         </div>
       </div>
