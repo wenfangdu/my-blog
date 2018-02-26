@@ -43,10 +43,16 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-        limit: 1000,
-        filter: { frontmatter: { category: { eq: $category }, layout: { eq: "post" }, draft: { ne: true } } },
-        sort: { order: DESC, fields: [frontmatter___date] }
-      ){
+      limit: 1000
+      filter: {
+        frontmatter: {
+          category: { eq: $category }
+          layout: { eq: "post" }
+          draft: { ne: true }
+        }
+      }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
           fields {
