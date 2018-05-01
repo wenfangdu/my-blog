@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     url: 'https://lumen.netlify.com',
     title: 'Blog by Leonbec',
-    subtitle: '像开发者一样思考',
+    subtitle: '@Leon',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
