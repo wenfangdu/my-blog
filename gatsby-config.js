@@ -20,11 +20,11 @@ module.exports = {
       }
     ],
     author: {
-      name: 'Leonbec',
+      name: 'Leon Du',
       email: 'dwfinz@gmail.com',
       telegram: '#',
       twitter: 'dwfinz',
-      github: 'leonbec',
+      github: 'dwfgh',
       rss: '#',
       vk: '#'
     }
