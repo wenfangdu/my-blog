@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     url: 'https://lumen.netlify.com',
-    title: 'Blog by Leonbec',
-    subtitle: '@Leon',
+    title: 'Blog by dwfgh',
+    subtitle: '@youqudev',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
